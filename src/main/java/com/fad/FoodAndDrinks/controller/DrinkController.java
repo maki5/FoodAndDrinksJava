@@ -2,9 +2,9 @@ package com.fad.FoodAndDrinks.controller;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
 import com.fad.FoodAndDrinks.model.Drink;
-import com.fad.FoodAndDrinks.repository.DrinksRepository;
+import com.fad.FoodAndDrinks.services.DrinkService;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,46 +14,38 @@ import java.util.Map;
 
 @RestController
 public class DrinkController {
-    @Autowired
-    private DrinksRepository repo;
+    @Setter
+    private com.fad.FoodAndDrinks.services.Drink service = new DrinkService();
 
     @GetMapping("/drinks")
     public List<Drink> getAllDrinks() {
-        return repo.findAll();
+        return service.getDrinks();
     }
 
     @PostMapping("/drink")
     public Drink createDrink(@RequestBody Drink drink) {
-        return repo.save(drink);
+        return service.createDrink(drink);
     }
 
     @GetMapping("/drink/{id}")
     public ResponseEntity<Drink> getDrinkById(@PathVariable(value = "id") Long drinkId)
             throws ResourceNotFoundException {
-        Drink drink = repo.findById(drinkId)
-                .orElseThrow(() -> new ResourceNotFoundException("Drink not found for this id :: " + drinkId));
+        Drink drink = service.getDrinkById(drinkId);
         return ResponseEntity.ok().body(drink);
     }
 
     @PutMapping("/drink/{id}")
     public ResponseEntity<Drink> updateDrink(@PathVariable(value = "id") Long drinkId,
                                            @RequestBody @NotNull Drink drinkDetails) throws ResourceNotFoundException {
-        Drink drink = repo.findById(drinkId)
-                .orElseThrow(() -> new ResourceNotFoundException("Drink not found for this id :: " + drinkId));
-
-        drink.setPrice(drinkDetails.getPrice());
-        drink.setName(drinkDetails.getName());
-        final Drink updatedDrink = repo.save(drink);
+        final Drink updatedDrink = service.updateDrink(drinkId, drinkDetails);
         return ResponseEntity.ok(updatedDrink);
     }
 
     @DeleteMapping("/drink/{id}")
     public Map<String, Boolean> deleteDrink(@PathVariable(value = "id") Long drinkId)
             throws ResourceNotFoundException {
-        Drink drink = repo.findById(drinkId)
-                .orElseThrow(() -> new ResourceNotFoundException("Drink not found for this id :: " + drinkId));
 
-        repo.delete(drink);
+        service.deleteDrink(drinkId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
