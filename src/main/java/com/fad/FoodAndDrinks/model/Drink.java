@@ -6,17 +6,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "food")
+@Table(name = "drinks")
 @Data
 @NoArgsConstructor
-public class Food {
-    public Food(String name, Float price) {
-        this.name = name;
-        this.price = price;
-    }
 
+public class Drink {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private Float price;

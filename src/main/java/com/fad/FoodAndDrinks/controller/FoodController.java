@@ -16,7 +16,7 @@ public class FoodController {
     @Autowired
     private FoodRepository repo;
 
-    @GetMapping("/get_food")
+    @GetMapping("/food")
     public List<Food> getAllFood() {
         return repo.findAll();
     }
