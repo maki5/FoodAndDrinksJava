@@ -1,5 +1,6 @@
 package com.fad.FoodAndDrinks.controller;
 
+import com.fad.FoodAndDrinks.ResourceNotFoundException;
 import com.fad.FoodAndDrinks.model.Drink;
 import com.fad.FoodAndDrinks.model.Food;
 import com.fad.FoodAndDrinks.model.Order;
@@ -32,7 +33,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public Order createOrder(@RequestBody @NotNull Order order) throws Exception {
+    public Order createOrder(@RequestBody @NotNull Order order) throws ResourceNotFoundException {
         List<Long> foodIds = order.getFoodIds();
         Set<Food> orderedFood = new HashSet<>();
         List<Long> drinkIds = order.getDrinkIds();
@@ -40,7 +41,7 @@ public class OrderController {
 
         for (Long id : foodIds)
         {
-            Food f = foodRepo.findById(id).orElseThrow(() -> new Exception("Food not found for this id :: " + id));
+            Food f = foodRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Food not found for this id :: " + id));
             orderedFood.add(f);
         }
 
@@ -48,7 +49,7 @@ public class OrderController {
 
         for (Long id : drinkIds)
         {
-            Drink d = drinksRepo.findById(id).orElseThrow(() -> new Exception("Drink not found for this id :: " + id));
+            Drink d = drinksRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drink not found for this id :: " + id));
             orderedDrinks.add(d);
         }
 
