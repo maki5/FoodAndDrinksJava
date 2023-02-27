@@ -2,9 +2,8 @@ package com.fad.FoodAndDrinks.controller;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
 import com.fad.FoodAndDrinks.model.Food;
-import com.fad.FoodAndDrinks.services.FoodService;
-import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,8 @@ import java.util.Map;
 
 @RestController
 public class FoodController {
-    @Setter
-    private com.fad.FoodAndDrinks.services.Food service = new FoodService();
+    @Autowired
+    private com.fad.FoodAndDrinks.services.Food service;
     @GetMapping("/food")
     public List<Food> getAllFood() {
         return service.getAllFood();

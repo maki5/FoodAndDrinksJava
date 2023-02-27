@@ -5,9 +5,11 @@ import com.fad.FoodAndDrinks.model.Drink;
 import com.fad.FoodAndDrinks.repository.DrinksRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DrinkService  implements com.fad.FoodAndDrinks.services.Drink {
     @Autowired
     private DrinksRepository repo;

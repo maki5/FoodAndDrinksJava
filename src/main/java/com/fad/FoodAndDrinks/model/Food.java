@@ -10,11 +10,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 public class Food {
-    public Food(String name, Float price) {
-        this.name = name;
-        this.price = price;
-    }
-
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
