@@ -1,4 +1,4 @@
-package com.fad.FoodAndDrinks.model;
+package com.fad.FoodAndDrinks.drinks.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "drinks")
 @Data
 @NoArgsConstructor
-
 public class Drink {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)

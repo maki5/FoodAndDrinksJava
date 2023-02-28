@@ -1,15 +1,15 @@
-package com.fad.FoodAndDrinks.services;
+package com.fad.FoodAndDrinks.food.service;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
-import com.fad.FoodAndDrinks.model.Food;
-import com.fad.FoodAndDrinks.repository.FoodRepository;
+import com.fad.FoodAndDrinks.food.model.Food;
+import com.fad.FoodAndDrinks.food.repository.FoodRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FoodService implements com.fad.FoodAndDrinks.services.Food {
+public class FoodService implements com.fad.FoodAndDrinks.food.service.Food {
     @Autowired
     private FoodRepository repo;
 

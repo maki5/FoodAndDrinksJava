@@ -1,7 +1,8 @@
-package com.fad.FoodAndDrinks.controller;
+package com.fad.FoodAndDrinks.food.controller;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
-import com.fad.FoodAndDrinks.model.Food;
+import com.fad.FoodAndDrinks.annotations.AuthorizeUser;
+import com.fad.FoodAndDrinks.food.model.Food;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,15 @@ import java.util.Map;
 @RestController
 public class FoodController {
     @Autowired
-    private com.fad.FoodAndDrinks.services.Food service;
+    private com.fad.FoodAndDrinks.food.service.Food service;
     @GetMapping("/food")
     public List<Food> getAllFood() {
         return service.getAllFood();
     }
 
     @PostMapping("/food")
-    public Food createFood(@RequestBody Food food) {
+    @AuthorizeUser
+    public Food createFood(@RequestHeader(value="Authorization") String auth, @RequestBody Food food) {
         return service.createFood(food);
     }
 

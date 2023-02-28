@@ -1,6 +1,6 @@
-package com.fad.FoodAndDrinks.repository;
+package com.fad.FoodAndDrinks.food.repository;
 
-import com.fad.FoodAndDrinks.model.Food;
+import com.fad.FoodAndDrinks.food.model.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

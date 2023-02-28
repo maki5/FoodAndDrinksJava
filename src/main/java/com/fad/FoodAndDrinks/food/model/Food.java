@@ -1,4 +1,4 @@
-package com.fad.FoodAndDrinks.model;
+package com.fad.FoodAndDrinks.food.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

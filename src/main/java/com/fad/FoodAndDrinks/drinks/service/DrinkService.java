@@ -1,8 +1,8 @@
-package com.fad.FoodAndDrinks.services;
+package com.fad.FoodAndDrinks.drinks.service;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
-import com.fad.FoodAndDrinks.model.Drink;
-import com.fad.FoodAndDrinks.repository.DrinksRepository;
+import com.fad.FoodAndDrinks.drinks.model.Drink;
+import com.fad.FoodAndDrinks.drinks.repository.DrinksRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DrinkService  implements com.fad.FoodAndDrinks.services.Drink {
+public class DrinkService  implements com.fad.FoodAndDrinks.drinks.service.Drink {
     @Autowired
     private DrinksRepository repo;
 

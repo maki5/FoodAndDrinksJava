@@ -1,12 +1,12 @@
-package com.fad.FoodAndDrinks.services;
+package com.fad.FoodAndDrinks.order.service;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
-import com.fad.FoodAndDrinks.model.Drink;
-import com.fad.FoodAndDrinks.model.Food;
-import com.fad.FoodAndDrinks.model.Order;
-import com.fad.FoodAndDrinks.repository.DrinksRepository;
-import com.fad.FoodAndDrinks.repository.FoodRepository;
-import com.fad.FoodAndDrinks.repository.OrderRepository;
+import com.fad.FoodAndDrinks.drinks.model.Drink;
+import com.fad.FoodAndDrinks.food.model.Food;
+import com.fad.FoodAndDrinks.order.model.Order;
+import com.fad.FoodAndDrinks.drinks.repository.DrinksRepository;
+import com.fad.FoodAndDrinks.food.repository.FoodRepository;
+import com.fad.FoodAndDrinks.order.repository.OrderRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class OrderService implements com.fad.FoodAndDrinks.services.Order {
+public class OrderService implements com.fad.FoodAndDrinks.order.service.Order {
     @Autowired
     private OrderRepository repo;
 
@@ -35,9 +35,9 @@ public class OrderService implements com.fad.FoodAndDrinks.services.Order {
     @Override
     public Order createOrder(@NotNull Order order) throws ResourceNotFoundException {
         List<Long> foodIds = order.getFoodIds();
-        Set<com.fad.FoodAndDrinks.model.Food> orderedFood = new HashSet<>();
+        Set<Food> orderedFood = new HashSet<>();
         List<Long> drinkIds = order.getDrinkIds();
-        Set<com.fad.FoodAndDrinks.model.Drink> orderedDrinks = new HashSet<>();
+        Set<Drink> orderedDrinks = new HashSet<>();
 
         for (Long id : foodIds)
         {

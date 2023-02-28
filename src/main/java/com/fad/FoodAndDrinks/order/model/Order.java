@@ -1,5 +1,7 @@
-package com.fad.FoodAndDrinks.model;
+package com.fad.FoodAndDrinks.order.model;
 
+import com.fad.FoodAndDrinks.drinks.model.Drink;
+import com.fad.FoodAndDrinks.food.model.Food;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
