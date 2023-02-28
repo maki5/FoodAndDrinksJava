@@ -23,7 +23,7 @@ public class FoodController {
 
     @PostMapping("/food")
     @AuthorizeUser
-    public Food createFood(@RequestHeader(value="Authorization") String auth, @RequestBody Food food) {
+    public Food createFood(@RequestHeader(value="Authorization", required = false) String auth, @RequestBody Food food) {
         return service.createFood(food);
     }
 

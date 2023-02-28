@@ -1,11 +1,12 @@
 package com.fad.FoodAndDrinks.user.service;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
-import com.fad.FoodAndDrinks.user.model.User;
 import com.fad.FoodAndDrinks.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class UserService implements com.fad.FoodAndDrinks.user.service.User {
+@Service
+public class UserService implements User {
     @Autowired
     private UserRepository repo;
 
@@ -13,14 +14,14 @@ public class UserService implements com.fad.FoodAndDrinks.user.service.User {
     private Jwt jwtService;
 
     @Override
-    public String createUser(User user) {
-        User u = repo.save(user);
+    public String createUser(com.fad.FoodAndDrinks.user.model.User user) {
+        com.fad.FoodAndDrinks.user.model.User u = repo.save(user);
         return jwtService.signJWT(u.getId());
     }
 
     @Override
-    public String login(User user) throws ResourceNotFoundException {
-        User u = repo.findByEmail(user.getEmail())
+    public String login(com.fad.FoodAndDrinks.user.model.User user) throws ResourceNotFoundException {
+        com.fad.FoodAndDrinks.user.model.User u = repo.findByEmail(user.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for email : " + user.getEmail()));
 
         if (!u.getPassword().equals(user.getPassword())) {

@@ -1,5 +1,6 @@
 package com.fad.FoodAndDrinks.user.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
 
     @NotBlank
@@ -34,5 +36,6 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @Schema(hidden = true)
     private Role role = Role.ROLE_USER;
 }

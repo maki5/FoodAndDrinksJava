@@ -13,10 +13,10 @@ public class RestResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
-            = { IllegalArgumentException.class, IllegalStateException.class, ResourceNotFoundException.class })
+            = { Exception.class })
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Exception caught, " + ex.getMessage();
+        String bodyOfResponse = "Exception caught (" + ex.getClass() + "), " + ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
