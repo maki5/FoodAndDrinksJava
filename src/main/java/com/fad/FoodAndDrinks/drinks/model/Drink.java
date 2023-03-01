@@ -1,13 +1,14 @@
 package com.fad.FoodAndDrinks.drinks.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "drinks")
 @Data
+@Table(	name = "drinks")
 @NoArgsConstructor
 public class Drink {
 
@@ -18,6 +19,7 @@ public class Drink {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @Schema(hidden = true)
     private Long id;
     private String name;
     private Float price;

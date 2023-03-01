@@ -1,5 +1,6 @@
 package com.fad.FoodAndDrinks.food.controller;
 
+import com.fad.FoodAndDrinks.NotAuthorizedException;
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
 import com.fad.FoodAndDrinks.annotations.AuthorizeUser;
 import com.fad.FoodAndDrinks.food.model.Food;
@@ -23,7 +24,7 @@ public class FoodController {
 
     @PostMapping("/food")
     @AuthorizeUser
-    public Food createFood(@RequestHeader(value="Authorization", required = false) String auth, @RequestBody Food food) {
+    public Food createFood(@RequestHeader(value="Authorization", required = false) String auth, @RequestBody Food food) throws NotAuthorizedException {
         return service.createFood(food);
     }
 

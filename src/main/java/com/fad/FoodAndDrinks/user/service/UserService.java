@@ -2,6 +2,8 @@ package com.fad.FoodAndDrinks.user.service;
 
 import com.fad.FoodAndDrinks.ResourceNotFoundException;
 import com.fad.FoodAndDrinks.user.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ public class UserService implements User {
 
     @Autowired
     private Jwt jwtService;
+
+    Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Override
     public String createUser(com.fad.FoodAndDrinks.user.model.User user) {
