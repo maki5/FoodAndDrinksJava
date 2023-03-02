@@ -9,6 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
@@ -19,9 +23,10 @@ public class AuthorizeUserAspect {
 
     @Around("@annotation(AuthorizeUser)")
     public Object authorize(ProceedingJoinPoint joinPoint) throws Throwable {
+        HttpServletRequest req = getRequest();
 
         //BEFORE METHOD EXECUTION
-        String token = (String) joinPoint.getArgs()[0];
+        String token = req.getHeader("Authorization");
         if (token == null) {
             return new NotAuthorizedException("No token provided.");
         }
@@ -34,5 +39,10 @@ public class AuthorizeUserAspect {
         }
 
         return joinPoint.proceed();
+    }
+
+    private HttpServletRequest getRequest() {
+        ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        return sra.getRequest();
     }
 }

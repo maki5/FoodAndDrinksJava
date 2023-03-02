@@ -5,10 +5,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+@Slf4j
 @Service
 public class JwtService implements Jwt {
     @Value("${jwt.key}")
@@ -17,12 +17,10 @@ public class JwtService implements Jwt {
     @Value("${jwt.issuer}")
     private String jwtIssuer;
 
-    Logger logger = LoggerFactory.getLogger(JwtService.class);
-
     @Override
     public String signJWT(Long userId) throws JWTCreationException {
         Algorithm algorithm = Algorithm.HMAC256(jwtKey);
-        logger.error("jwtkey: " + jwtKey);
+        log.debug("jwtkey: {}", jwtKey);
 
         return JWT.create()
                 .withIssuer(jwtIssuer)

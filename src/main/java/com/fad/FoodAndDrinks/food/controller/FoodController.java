@@ -24,7 +24,7 @@ public class FoodController {
 
     @PostMapping("/food")
     @AuthorizeUser
-    public Food createFood(@RequestHeader(value="Authorization", required = false) String auth, @RequestBody Food food) throws NotAuthorizedException {
+    public Food createFood(@RequestBody Food food) throws NotAuthorizedException {
         return service.createFood(food);
     }
 

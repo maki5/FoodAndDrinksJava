@@ -1,6 +1,6 @@
 package com.fad.FoodAndDrinks;
 
-public class NotAuthorizedException extends Exception{
+public class NotAuthorizedException extends RuntimeException{
     public NotAuthorizedException(String msg) {
         super(msg);
     }
