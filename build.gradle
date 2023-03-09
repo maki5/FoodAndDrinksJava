@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.8'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id "org.flywaydb.flyway" version "9.8.1"
 }
 
 group = 'com.fad'
@@ -19,6 +18,12 @@ repositories {
 	mavenCentral()
 }
 
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.fad.FoodAndDrinks.Application'
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.jetbrains:annotations:20.1.0'
@@ -30,6 +35,7 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
 	implementation 'com.auth0:java-jwt:4.3.0'
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.4.0'
+	implementation 'org.flywaydb:flyway-core:6.4.3'
 }
 
 tasks.named('test') {
