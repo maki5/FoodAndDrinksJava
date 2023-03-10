@@ -16,12 +16,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                docker build ./ -t alexababiiyopeso/fadapp
+                sh 'docker build ./ -t alexababiiyopeso/fadapp'
             }
         }
         stage('Upload Docker Image') {
             steps {
-                docker push alexababiiyopeso/fadapp:latest
+                sh 'docker push alexababiiyopeso/fadapp:latest'
             }
         }
     }
