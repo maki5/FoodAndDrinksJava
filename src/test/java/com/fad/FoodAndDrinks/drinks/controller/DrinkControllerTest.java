@@ -39,6 +39,7 @@ public class DrinkControllerTest {
     void createNewDrinkTest() throws Exception {
         Drink drink = new Drink("TestDrink1", 1.0F);
 
+        when(drinksRepository.save(drink)).thenReturn(drink);
         mockMvc.perform(post("/drink", 42L)
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(drink)))
